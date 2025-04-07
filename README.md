@@ -7,12 +7,12 @@
 
 [![英文](https://img.shields.io/badge/%E8%8B%B1%E6%96%87-English-blue)](./README-EN.md)
 [![下载](https://img.shields.io/github/downloads/Chenyme/Chenyme-AAVT/total.svg?style=flat-square&label=下载)](https://github.com/Chenyme/Chenyme-AAVT/releases)
-[![群组](https://img.shields.io/badge/群组-Telegram-blue?logo=telegram)](https://t.me/+j8SNSwhS7xk1NTc9)
 [![Latest Release](https://img.shields.io/github/v/release/Chenyme/Chenyme-AAVT.svg?style=flat-square)](https://github.com/Chenyme/Chenyme-AAVT/releases)
 ![PyPI - Version](https://img.shields.io/pypi/v/AAVT?logo=pypi)
 [![License](https://img.shields.io/github/license/Chenyme/Chenyme-AAVT.svg?style=flat-square)](https://github.com/Chenyme/Chenyme-AAVT/blob/main/LICENSE)
+[![群组](https://img.shields.io/badge/群组-Telegram-blue?logo=telegram)](https://t.me/+j8SNSwhS7xk1NTc9)
+![Docker Image Version](https://img.shields.io/docker/v/chenyme/chenyme-aavt?logo=docker&color=blue&link=https%3A%2F%2Fhub.docker.com%2Flayers%2Fchenyme%2Fchenyme-aavt%2Fv0.9.0%2Fimages%2Fsha256-5f704a4a3aba20396ad0f3c94a1ffcd0b9d89d82a33aa1b16601fd7613a74e6c%3Fcontext%3Drepo)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Kirie233/Chenyme-AAVT/blob/main/AAVT.ipynb)
-
 </div>
 
 ---
@@ -21,8 +21,11 @@
 > 🌟 **如果本项目对您有帮助，记得 Star 🌟 支持一下吧~**
 >
 > 📝 **推荐识别时使用 Large 模型以获取更好的体验！由于正在备考，更新速度会放缓，感谢理解！** 
+> 
+> 📖 [**安装教程**](https://blog.chenyme.top/blog/aavt-install) | ❓ [ **常见问题**](https://blog.chenyme.top/blog/aavt-qa) | 💬 [ **电报群组**](https://t.me/+j8SNSwhS7xk1NTc9)
 >
-> 📖[**安装教程**](https://blog.chenyme.top/blog/aavt-install) | ❓ [ **常见问题**](https://blog.chenyme.top/blog/aavt-qa) | 💬 [ **电报群组**](https://t.me/+j8SNSwhS7xk1NTc9)
+> ### 新项目：[ **Srtranslate**](https://github.com/chenyme/Srtranslate) | 官网：[srt.chenyme.com](https://srt.chenyme.com)
+> ### 体验更加专业智能、高效精确的srt字幕翻译！
 
 <br>
 
@@ -42,7 +45,8 @@
 ## 项目亮点
 
 <details>
-  <summary><b>TODO | 待办</b></summary>
+  <summary><b>👉 TODO | 待办事项</b></summary>
+<br>
 
 ### 识别相关
 - [x] 更换更快的Whisper项目
@@ -51,6 +55,8 @@
 - [x] VAD辅助优化
 - [x] 字词级断句优化
 - [x] 更多的语种识别
+- [ ] 音色辨别
+- [ ] 实时语音翻译
 
 ### 翻译相关
 - [x] 翻译优化
@@ -59,22 +65,25 @@
 - [x] 更多的翻译引擎
 - [x] 支持本地大语言模型翻译
 
-### 字幕相关
+### 视频相关
 - [x] 个性化字幕
 - [x] 更多字幕格式
 - [x] 字幕预览、实时修改
 - [ ] 自动化字幕文本校对
 - [ ] 双字幕
+- [ ] 视频中文配音
+- [ ] 声音克隆
+- [ ] 口型校对
+
+#### 图文博客
+- [x] 生成图文
+- [ ] 更多写作风格
+- [ ] 优化生成效率
+- [ ] 提高成品率
 
 ### 其他
 - [x] AI助手
 - [x] 视频预览
-- [x] 视频生成博客
-- [ ] 实时语音翻译
-- [ ] 视频中文配音
-- [ ] 音色辨别
-- [ ] 声音克隆
-- [ ] 口型校对
 
 </details>
 
@@ -87,51 +96,143 @@
 
 <br>
 
-## 如何部署
-> 若需要验证，密码为：`chenymeaavt`，此为新功能，可在设置中关闭项目保护
-
-### Windows 部署
-📖[**安装教程**](https://blog.chenyme.top/blog/aavt-install) | Release 中带有 `Full` 的是已打包了FFmpeg库的版本
-
-1. 安装 [Python](https://www.python.org/downloads/) (请确保Python版本大于3.8！)
-   
-2. 安装 [FFmpeg](https://www.ffmpeg.org/download.html) (请不要忘记设置为环境变量！)
-   
-3. 安装 [CUDA](https://developer.nvidia.com/cuda-toolkit) (CPU部署可忽略，推荐版本为 CUDA11.8、12.1、12.4！)
-
-4. 运行 `0_Check.bat` (检查有哪些环境还没有正确安装，以免出错)
-
-5. 运行 `1_Install.bat`(环境检查通过后，界面内选择您对应的版本继续安装！)
-
-6. 运行 `2_WebUI.bat`(运行成功即可)
+> [!WARNING]
+> ### 关于 dll 缺失的公告
+>
+> 以下解决方法经过本人验证可有效解决，**麻烦给颗🌟Star吧**!
+>
+> &nbsp;
+> 
+> #### 1. ❌ `fbgemm.dll` 缺失。此为 pytorch 对 win 的 mkl 文件构建错误，官方已在 2.4.1 Beta 版本中修正，请遇到后重新 Install.bat，并在菜单栏选择 修复版本（2.4.1）修正
+>
+> #### 2. ❌ `cudnn_ops_infer64_8.dll` 缺失，导致启用 GPU 失败。请前往 [Releases](https://github.com/Chenyme/Chenyme-AAVT/releases/tag/V0.9) 中下载 CUDA_dll.zip 压缩包解压到CUDA目录 `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\bin` 修复
 
 <br>
 
-### docker 部署
-注：目前 项目最新版本为 V0.9.0 此 Docker 的版本为0.8.x，
-
-```
-docker pull eisai/chenyme-aavt
-```
-
-具体使用方法，请查阅：[eisai/chenyme-aavt]([https://www.ffmpeg.org/download.html](https://hub.docker.com/r/eisai/chenyme-aavt))，感谢 @Eisaichen 提供此版本
+## Windows 部署
+<details>
+  <summary><b>👉 前置环境：Python、FFmpeg、CUDA 说明 </b></summary>
+<br>
+  
+### Python | 📖 [教程](https://blog.chenyme.top/blog/aavt-install#47a521d01156)
+  - 💡 选择 Python > 3.8 的版本
+  - 前往 Python 官网下载 安装程序
+  - 运行安装，在安装时请点击 ADD TO PATH 选项
+### FFMpeg | 📖 [教程](https://blog.chenyme.top/blog/aavt-install#1897915fc461)
+  - 💡 若您不知道如何安装编译，请直接在项目Release中的下载 `Win` 版本，自带编译后的FFMpeg
+  - 前往 FFMpeg 官网下载编译好的 Windows 版本
+  - 设置 FFmpeg 为环境变量
+### CUDA(CPU 可忽略) | 📖 [教程](https://blog.chenyme.top/blog/aavt-install#1faea2d7295f)
+  - 💡 推荐使用版本为 CUDA11.8、12.1、12.4
+  - 前往 CUDA 官网下载 CUDA 安装程序
+  - 安装 CUDA
+## &nbsp;
+</details>
 
 <br>
 
-
-### Google Colab 部署
-
-请点击后阅读相关部署教程 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Kirie233/Chenyme-AAVT/blob/main/AAVT.ipynb)，感谢 @Kirie233 提供此版本
+> ‼️ 请确保前置环境已准备好后再继续下面的步骤‼️ 
+> 
+> ### 1. 运行部署脚本
+>  - 前往 Release 页面下载 `Win` 的最新发行版 （Win/Small）
+>  - 运行 `1_Install.bat`，等待脚本检查，通过后根据界面内提示选择版本安装
+> ### 2. 运行项目Web
+>  - 运行 `2_WebUI.bat`
+>  - 等待 WebUI 自动拉起，或输入网址 `localhost:8501`
+>  - 项目验证密码 `chenymeaavt`（此为新版本的保护功能，可关闭）
 
 <br>
 
-### Mac os 部署
-已支持，近期会写教程
+## Mac OS 部署
+<details>
+  <summary><b>👉 前置环境：Python、Brew、FFMpeg 说明 </b></summary>
+<br>
+  
+### Python
+  - 选择 Python > 3.8 的版本
+  - 前往 Python 官网下载 PGK 安装包
+  - 运行安装，页面内选择标准安装
+### Brew
+  - 💡 使用下面的命令进行一键安装安装 `brew`
+    ```
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+### FFMpeg
+  - 💡 使用下面的命令进行一键安装安装 `FFMpeg`
+    ```
+    brew install FFMpeg
+    ```
+## &nbsp;
+</details>
 
-### 其他环境部署
+<br>
 
-- #### Linux
-由于近期那台电脑丢在学校，暂时没研究，其实我觉得解决 FFMpeg 和 Cuda，应该就没问题了
+> ‼️ 请确保前置环境已准备好后再继续下面的步骤‼️
+> ### 1. 安装项目依赖
+> - 前往 Release 页面下载 `Mac` 的最新发行版 （Mac/Small）
+> ```
+> cd Chenyme-AAVT
+> pip3 install -r requirements.txt
+> ```
+> ### 2. 运行项目Web
+> ```
+> streamlit run Chenyme-AAVT.py
+> ```
+> - 等待 WebUI 自动拉起，或输入网址 `localhost:8501`
+> - 项目验证密码 `chenymeaavt`（此为新版本的保护功能，可关闭）
+
+<br>
+
+## Docker 部署
+>![Docker Image Version](https://img.shields.io/docker/v/chenyme/chenyme-aavt?logo=docker&color=blue&link=https%3A%2F%2Fhub.docker.com%2Flayers%2Fchenyme%2Fchenyme-aavt%2Fv0.9.0%2Fimages%2Fsha256-5f704a4a3aba20396ad0f3c94a1ffcd0b9d89d82a33aa1b16601fd7613a74e6c%3Fcontext%3Drepo)
+>
+> 感谢 [@Eisaichen](https://github.com/Eisaichen) 协助构建此镜像
+
+> ### docker
+> ```
+> docker pull chenyme/chenyme-aavt:latest
+> ```
+> - 完成后，输入 `<您的服务器IP>:8501` 访问
+> - 项目验证密码 `chenymeaavt`（此为新版本的保护功能，可关闭）
+
+> ### docker-compose
+> ```
+> git clone https://github.com/Chenyme/Chenyme-AAVT
+> cd Chenyme-AAVT
+> docker-compose up -d
+> ```
+> - 完成后，输入 `<您的服务器IP>:8501` 访问
+> - 项目验证密码 `chenymeaavt`（此为新版本的保护功能，可关闭）
+
+<br>
+
+## Linux 部署
+> 💡此版本为 AAVT V0.8.6 的 Linux CUDA 12.1 Docker 版本，最新版本为 V0.9.0
+>
+> 感谢 [@dhlsam](https://github.com/dhlsam) 提供此版本
+>
+> 具体使用方法，请查阅：📖 [issues/36](https://github.com/Chenyme/Chenyme-AAVT/issues/36#issuecomment-2284331590)
+
+<br>
+
+## Google Colab 部署
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Kirie233/Chenyme-AAVT/blob/main/AAVT.ipynb)
+>
+> 感谢 [@Kirie233](https://github.com/Kirie233) 提供 Colab 版本
+>
+> 具体使用方法，请查阅：📖 [AAVT.ipynb](https://github.com/Chenyme/Chenyme-AAVT/blob/main/AAVT.ipynb)
+
+
+<br>
+
+## 感谢项目的贡献者
+
+[![][github-contrib-shield]][github-contrib-link]
+
+<!-- LINK GROUP -->
+
+[github-contrib-shield]: https://contrib.rocks/image?repo=Chenyme/Chenyme-AAVT
+[github-contrib-link]: https://github.com/Chenyme/Chenyme-AAVT/graphs/contributors
 
 <br>
 
@@ -143,11 +244,15 @@ docker pull eisai/chenyme-aavt
 
 ### 主页BOT
 
+<br>
+
 ![11](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/bot.png)
 
 <br>
 
 ### 部分设置
+
+<br>
 
 ![12](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/setting.png)
 
@@ -155,11 +260,15 @@ docker pull eisai/chenyme-aavt
 
 ### 音频识别
 
+<br>
+
 ![13](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/audio.png)
 
 <br>
 
 ### 视频识别
+
+<br>
 
 ![14](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/video.png)
 
@@ -167,11 +276,15 @@ docker pull eisai/chenyme-aavt
 
 ### 图文博客
 
+<br>
+
 ![15](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/blog.png)
 
 <br>
 
 ### 字幕翻译
+
+<br>
 
 ![16](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/srt.png)
 
@@ -179,10 +292,9 @@ docker pull eisai/chenyme-aavt
 
 ### 声音模拟
 
+<br>
+
 ![17](https://github.com/Chenyme/Chenyme-AAVT/blob/main/cache/public/picture/opentts.png)
 
 <br>
 
-## 鸣谢
-
-本人是 AI 时代的受益者，本项目的开发基本是站在巨人的肩膀上实现的。感谢开源精神，感谢 OpenAI 、 Streamlit 、 FFmpeg 、Faster-whisper 等开发人员！

@@ -448,6 +448,7 @@ with tab4:
                     video_config["subtitle"]["srt"] = srt_setting
                     video_config["subtitle"]["font_color"] = font_color_setting
                     toml.dump(video_config, f)
+
                 with open(blog_config_path, 'w', encoding="utf-8") as f:
                     blog_config["article"]["language_list"] = blog_language_list
                     blog_config["article"]["language"] = blog_language
@@ -524,7 +525,7 @@ with tab1:
                 translate_option = translation_dict[tuple(video_translate_index)]
                 if translate_option != '无需翻译':
                     msg_tra = st.toast("正在翻译字幕", icon=":material/translate:")
-                    if translate_option == '本地模型':
+                    if '本地模型' in translate_option:
                         result = local_translate(system_prompt, user_prompt, local_key, local_url, local_model, result, srt_setting)
                     elif 'gemini' in translate_option:
                         result = translate(system_prompt, user_prompt, gemini_key, gemini_url, translate_option, result, video_wait_time_setting, srt_setting)
@@ -753,12 +754,12 @@ with tab2:
 
                 for i in st.session_state.video_name_list:
                     container.caption(f"{i}")
+                    video_name = "uploaded" + ".mp4"
+                    output_file = f"{st.session_state.output_file_batch}/{i}"
+
                     print("\n\033[1;34m🚀 任务开始执行\033[0m")
                     print(f"\033[1;34m📂 本次任务目录:\033[0m\033[1;34m {output_file} \033[0m")
                     print("\033[1;33m⚠️ 请不要在任务运行期间切换菜单或修改参数！\033[0m")
-
-                    video_name = "uploaded" + ".mp4"
-                    output_file = f"{st.session_state.output_file_batch}/{i}"
 
                     msg = st.toast('正在识别视频内容', icon=":material/hearing:")
                     if whisper_mode == "OpenAIWhisper - API":
@@ -777,7 +778,7 @@ with tab2:
 
                     translate_option = translation_dict[tuple(video_translate_index)]
                     if translate_option != '无需翻译':
-                        if translate_option == '本地模型':
+                        if '本地模型' in translate_option:
                             result = local_translate(system_prompt, user_prompt, local_key, local_url, local_model, result, srt_setting)
                         elif 'gemini' in translate_option:
                             result = translate(system_prompt, user_prompt, gemini_key, gemini_url, translate_option, result, video_wait_time_setting, srt_setting)
